@@ -1,5 +1,5 @@
 try:
-	#same result here:	this works only for main
+	#same result here: this works only for main
 	from misc.logging_type import LoggingType
 except ImportError:
 	#this works for (config/)settings.py
@@ -7,6 +7,6 @@ except ImportError:
 #end try
 
 def loggingSomething(message: str, logType: LoggingType = LoggingType.NORMAL) -> None:
-	#	"any logging"
+	# "any logging"
 	print(f"{message} of type {logType}")
 #end function

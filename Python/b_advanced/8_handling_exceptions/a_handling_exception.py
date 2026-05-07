@@ -3,7 +3,7 @@
 # no access rights are given, or file is corrupted or else
 #
 # Traceback (most recent call last):
-# File "17_00_handling_exception_0", line 10, in <module>
+# File "a_handling_exception", line 10, in <module>
 # 	with open(file="Non existing file here", mode="r") as f:
 # 	FileNotFoundError: [Errno 2] No such file or directory: 'Non existing file here'
 # ---

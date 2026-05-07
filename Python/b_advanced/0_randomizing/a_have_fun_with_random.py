@@ -1,19 +1,18 @@
-# Have some fun with random numbers?
-# Here you'll have it.
+# You want some have fun with random numbers? Enjoy.
 #
 # To be able to use a random number,
 # we have to import a module, which
 # allows us to work with random operations.
 #
 # Attention: If you're using a module, which
-# has the exactly name of one of your files,
+# has the exact name of one of your files,
 # then it might crash on runtime. In that case
-# this file was named with "random_fun.py"
+# this file was named with "a_have_fun_with_random.py"
 # instead of "random.py".
 
-#	required module to work with
-#	mostly a module may have an alias
-#	to work with the alias instead
+# required module to work with
+# mostly a module may have an alias
+# to work with the alias instead
 import random as r
 
 # prints a random number between [0, 1)

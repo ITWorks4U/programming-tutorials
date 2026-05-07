@@ -50,7 +50,7 @@ def casual_way():
 	#	--------------
 	#	output
 	#	--------------
-	print(f'current lottery numbers: {lottery_collection} with super number: {rnd.choice(super_number)}')
+	print(f'current lottery numbers (casual way): {lottery_collection} with super number: {rnd.choice(super_number)}')
 #end function
 
 def pythonic_way():
@@ -62,7 +62,7 @@ def pythonic_way():
 	#end while
 
 	super_number = [(i + 1) for i in range(10)]
-	print(f'current lottery numbers: {lottery_collection} with super number: {rnd.choice(super_number)}')
+	print(f'current lottery numbers (pythonic way): {lottery_collection} with super number: {rnd.choice(super_number)}')
 #end function
 
 print("-------------------")
