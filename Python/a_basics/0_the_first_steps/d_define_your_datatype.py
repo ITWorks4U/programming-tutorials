@@ -17,18 +17,16 @@ data_1: str = "Hello World!"
 # float              := floating point
 # str                := string
 # bool               := boolean expression
-# list[type]         := list with an expected type, can also be defined as a "nacked" list
-# tuple[type]        := tuple
-# set[type]          := set
-# dict[type, type]   := dictionary with key and value
+# list[type]         := list with an expected type, can also be defined as a raw list  => "list"      *
+# tuple[type]        := tuple, similar to the list above | a raw tuple declaration: "tuple"           *
+# set[type]          := set, similar to the list | raw set declaration: "set"                         *
+# dict[type, type]   := dictionary with key and value | raw dictionary declaration: "dict"            *
 #
-# class              := more in use, if you declare a specific class, where "class" is not in use here
+# * := take a look to section a, chapter 6 (collections)
 #
-# example:
-# class Test:
-#    # any content here
+# class              := more in use, if you declare a specific class **
 #
-# Test               := marks to use an object for that class "Test"
+# ** := take a look to section b, chapter 7 (python and oop)
 #
 # finally, if you're using a type, which does not match, no error appears
 # - unless the python interpreter runs into a real error on runtime
@@ -37,3 +35,8 @@ data_1: str = "Hello World!"
 # since this string is not mentioned to work with integer operations,
 # everything works fine, but it causes confusions
 data_2: int = "Hello World"
+
+# every output is a string ('str')
+print("data_0 = " + str(type(data_0)))
+print("data_1 = " + str(type(data_1)))
+print("data_2 = " + str(type(data_2)))

@@ -2,13 +2,13 @@ a = 10
 b = 20
 
 # How often can you write something wrong? Yes!
-print("This is gonna be hurt...")
+print(">>> This starts to hurt...<<<", end="\n\n")
 
 """
- a == b means:	if the values of a and b are equal
+ a == b means:    if the values of a and b are equal
 
  often wrongly interpreted:
- - a and b means: if the values of a and b differs to zero
+ - a and b means: if the values of a and b are not zero
  - a is b means:  if a and b refers to the identical memory storage
  - a & b means:   the binary expression (0, 1) of a and b are compared to each other and returns a new value
 
@@ -18,9 +18,12 @@ print("This is gonna be hurt...")
  a & b:
  00000000 (0)
 """
+
 # ---
 # locical expressions
 # ---
+
+print("locical expressions...")
 if a and b:
 	print("a and b differs to zero")
 else:
@@ -49,6 +52,8 @@ b = 20
 # ---
 # object comparison expression
 # ---
+
+print("\nobject comparison expression...")
 if a is b:
 	print("a is b")
 else:
@@ -71,6 +76,8 @@ else:
 # ---
 # binary expression
 # ---
+
+print("\nbinary expression...")
 if a & b:
 	print("Hooray, a 'condition check'!")
 else:

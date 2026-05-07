@@ -15,6 +15,7 @@
 # then you also >could< try to use a value of 50 or higher o.O
 #
 # without using a last recently cache... don't do this :o)
+# => You want more? Take a look to section d, chapter 3!
 #
 # fib(n) = fib(n-1) + fib(n-2)
 

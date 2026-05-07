@@ -27,14 +27,12 @@ print(b << 4)
 
 print("-------------------------------------")
 
-# 73
-a = 0b01001001
-#	42
-b = 0b00101010
+a = 0b01001001               # 73
+b = 0b00101010               # 42
 
-print(a & b)
-print(a | b)
-print(a ^ b)
-print(~a)
-print(a >> 4)
-print(b << 4)
+print(a & b)                 # a bit and b
+print(a | b)                 # a bit or b
+print(a ^ b)                 # a exclusive or b
+print(~a)                    # bit negated value of a
+print(a >> 4)                # right bit shift of a by 4 fields
+print(b << 4)                # left bit shift of b by 4 fields

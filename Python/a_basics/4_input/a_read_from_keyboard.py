@@ -10,7 +10,7 @@ print(f'Your input: {buffer}, its a type of "{type(buffer)}", and it has a lengt
 # as an integer => make
 # sure, this is possible
 #
-# in some later sections, you'll
+# in the advanced sections, you'll
 # learn some mechanics to
 # handle such kind of errors
 # ---
@@ -18,7 +18,7 @@ print("-------------------")
 buffer = input("give me a number: ")
 print(f'Your input: {buffer}, its a type of "{type(buffer)}", and it has a length of {len(buffer)} characters.')
 
-#	try to convert this input to an integer, IF possible
+# try to convert this input to an integer, IF possible
 buffer = int(buffer)
 print(f"after successfully converting your input ({buffer}) has now this type: {type(buffer)}")
 
@@ -32,7 +32,7 @@ print("-------------------")
 # x := number of zeros to use
 # ---
 
-number = 00000
+number: int = 00000
 print("default number: ", number)
 print("formatted version #1: %05d" % number)
 print("formatted version #2: {0:05d}".format(number))

@@ -1,7 +1,7 @@
 """
 	Python allows you to define a function in a function.
 	Usually, this can be used to make sure to do an
-	action, where some conditions are satisfied early.
+	action, where some conditions are satisfied earlier.
 
 	An inner function can't be accessed from outside.
 	This is only available in the called function itself.
