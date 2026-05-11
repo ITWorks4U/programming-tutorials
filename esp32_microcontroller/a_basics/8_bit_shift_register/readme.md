@@ -1,4 +1,4 @@
-#   using an 8-bitshift-register (74HC595)
+#   using an 8-bit shift-register (74HC595)
 
 -   allows to control up to eight different devices with only one indepentend input (e. g.: 8 LEDs) or a 7-segment-display (up to all 8 input ports)
 -   this module requires 3 input pins to be able to use

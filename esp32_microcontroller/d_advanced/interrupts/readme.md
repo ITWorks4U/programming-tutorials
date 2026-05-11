@@ -1,4 +1,4 @@
-#   Detecing and handling interrupts
+#   Detecting and handling interrupts
 
 -   interrupts may appear **anytime**, **anywhere** with **any reason**
 -   your job is to detect such interrupts and also to figure out, what happened and what to do
