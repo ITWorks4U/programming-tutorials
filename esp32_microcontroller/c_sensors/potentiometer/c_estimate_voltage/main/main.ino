@@ -5,11 +5,11 @@
 
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
 #define PIN_POTENTIOMETER   A0
-#define VOLTAGE_VALUE       5.0
+#define VOLTAGE_VALUE       5.0F
 #define ADC_MAX_VALUE       1023
 #else
 #define PIN_POTENTIOMETER   34
-#define VOLTAGE_VALUE       3.3
+#define VOLTAGE_VALUE       3.3F
 #define ADC_MAX_VALUE       4095
 #endif
 
