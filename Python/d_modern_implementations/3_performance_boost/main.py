@@ -95,7 +95,7 @@ def fibonacci_5(n: int) -> list[int]:
 	return fib_series[-1] + fib_series[-2]
 #end function
 
-# use a matrice implementation instead
+# use a matrix implementation instead
 @time_measurment
 def fibinacci_6(n: int):
 	if n == 0:
@@ -117,8 +117,24 @@ def fibinacci_6(n: int):
 	return helper(n)[0]
 #end function
 
+# O(n)
+@time_measurment
+def regular_loop(n: int) -> None:
+	summary: int = 0
+
+	for i in range(1, n+1):
+		summary += i
+	#end for
+#end function
+
+# O(1)
+@time_measurment
+def fast_loop(n: int) -> None:
+	_ = n * (n + 1) // 2
+#end function
+
 if __name__ == "__main__":
-	upper_boundary: int = 40
+	upper_boundary: int = 40    # F(40) = 102,334,155
 
 	# NOTE: Depends on how much RAM is available and how much applications are also running at the same time.
 	#       If you have multiple virtual desktops, then the time amount also differs, when an another
@@ -127,7 +143,21 @@ if __name__ == "__main__":
 	fib_functions = [fibonacci_0, fibonacci_1, fibonacci_2, fibonacci_3, fibonacci_4, fibonacci_5, fibinacci_6]
 
 	for f in fib_functions:
-		res = f(upper_boundary)
-		print(f"fib({upper_boundary}): {res}")
+		_ = f(upper_boundary)
 	#end for
+
+	upper_boundary: int = 1000   # sum(1000) = 500,500
+	regular_loop(n=upper_boundary)
+	fast_loop(n=upper_boundary)
+
+	# use the summary dictionary to figure out which function
+	# has had which time consuming in µs
+	from time_decorator import summary
+
+	fastest = min(summary.items(), key=lambda item: item[1])
+	slowest = max(summary.items(), key=lambda item: item[1])
+
+	print(f"fastest function: {fastest[0]} ({fastest[1]} µs)")
+	print(f"slowest function: {slowest[0]} ({slowest[1]} µs)")
+
 #end entry point

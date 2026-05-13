@@ -8,11 +8,13 @@
 # potentially causing a hang or apparent infinite loop.
 # ---
 
-from time import perf_counter
-from datetime import timedelta
-from functools import wraps
+summary: dict[str,int] = {}          # gain access from outside
 
 def time_measurment(func) -> None:
+	from time import perf_counter
+	from datetime import timedelta
+	from functools import wraps
+
 	@wraps(func)
 	def wrapper(*args, **kwargs):
 		if wrapper._is_running:
@@ -25,7 +27,8 @@ def time_measurment(func) -> None:
 			result = func(*args, **kwargs)
 			end = perf_counter()
 
-			print(f"total time amount for function {func.__name__}: {timedelta(seconds=(end-start))}")
+			# function : elapsed microseconds
+			summary[func.__name__] = timedelta(seconds=(end-start)).microseconds
 
 			return result
 		finally:
