@@ -4,7 +4,7 @@
 */
 
 #ifdef __cplusplus
-#error "Don't use C++. This may result to an undefined behavior or your application might be interpreted as a threat."
+#error "This source code is only for C. By using a C++ compiler your application may be interpreted as a threat."
 #else
 
 #include <stdio.h>
