@@ -9,7 +9,7 @@
 ```
 -   *attention:*:
     -   the input function comes with an additional argument, named `promt`, but you're not allowed to use: `promt="any text"`
-    -   the python interpreter might handle this like an error on runtime
+    -   the python interpreter handle this a an error on runtime
 
 
 ######	attention

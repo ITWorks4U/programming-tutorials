@@ -6,9 +6,24 @@
 
 ####    formatting output
 -   there are different ways to do this:
-    -   use the C-like syntax (see: `b_print_c_style`)
-    -   use the Java / C#-like syntax (see: `c_print_java_c_sharp_style`)
-    -   use the Python-syntax (see: `d_pythonic_print`)
+
+-   **C-style**:
+```
+str_val: str = "This is a simple text."
+print("%s" % str_val)
+```
+
+-   **Java/C#-style**:
+```
+str_val: str = "This is a simple text."
+print("{}".format(str_val))
+```
+
+-   **Pythonic-style**:
+```
+str_val: str = "This is a simple text."
+print(f"{str_val}")
+```
 
 ######	attention
 -   __EVERYTING__ will be "a word" when it's printed to the console or written into a file
