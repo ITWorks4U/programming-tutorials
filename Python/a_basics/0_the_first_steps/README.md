@@ -18,7 +18,7 @@
 -   Every variable, here an object, can easy be defined and also reinterpreted by any other value.
 -   However, there are >some< points to know:
     -   by using blocks, like conditions, loops, functions, ... it's required to know, which command/s is/are part of the block
-        -   take a look into the certain section folders, like decicion making, loops, ...
+        -   take a look into the certain section folders, like [decision making](../2_decision_making/README.md) [loops](../5_loops/README.md), [functions](../8_functions_in_python/README.md)
 -   in contrast to any other language, it's neccessary to know what kind of indention you're using; there're two of them:
     -   space bar(s)
     -   tab(s)

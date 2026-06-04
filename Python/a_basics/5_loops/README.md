@@ -14,7 +14,7 @@
 
 -   especially for a recursion, there're some points to know:
     -   unlike to a while loop, the application will crash, when no more free (virtual) space exists
-    -   much slower than an iteration
+    -   much slower than a loop
     -   less code in contrast to a loop
     -   often used by mathematicians
     -   easier to implement, but harder to understand and much harder to debug
