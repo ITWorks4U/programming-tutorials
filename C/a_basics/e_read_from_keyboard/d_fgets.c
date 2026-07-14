@@ -29,9 +29,9 @@ int main(void) {
     // application or any other issue, if there's no free space left for a null termination character
     fgets(word, sizeof(word) - 1, stdin);
 
-    //  "handle" a C-string after using fgets()
-    //  the last character becomes \0
-    word[strlen(word) - 1] = '\0';                              // NOTE: A null termination character must be added by your own.
+    //  replace '\n' with '\0'
+    size_t position_newline = strlen(word) - 1;
+    word[position_newline] = '\0';                              // NOTE: A null termination character must be added by your own.
                                                                 //       Furthermore, replacing the last character with \0 may not work well each time
 
     /* see, what happens: */

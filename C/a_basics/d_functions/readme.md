@@ -1,11 +1,11 @@
 #   functions
 -   allows to move code into an own block, which can be called over and over again
--   similar to loops (see: chapter 7)
+-   sounds similar to loops, but those are handled in a different way (**section: a:h_repeat_instructions**)
 
 >   **NOTE**:   Functions in C have a different behavior than in C++.
 >>  -   you can call a function, before the function has been defined
 >>  -   you can use any amount of arguments, even no arguments are given
->>      -   will be handled in **section 25**
+>>      -   will be handled in **section c:e_strange_function_behavior**
 >>  -   a function must have a return statement, when the datatype is **not** *void*
 
 ### definition of a function

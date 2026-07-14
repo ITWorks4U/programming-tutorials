@@ -17,7 +17,8 @@ int main(void) {
     // What may happen here?
     // Do you see a warning on compile time?
     // Do you see 100200300123456 in number?
-    // => At this point it's not clear what may happen here!
+    // => You only see "100200300". The remaining characters will be "ignored".
+    // => any other "invalid" input returns 0
 
     return EXIT_SUCCESS;
 }

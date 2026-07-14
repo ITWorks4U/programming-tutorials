@@ -1,27 +1,39 @@
 #   decision making
 -   decide, if a condition us true or false (or a bunch of sub conditions are true or false)
--   usually, a statement like `true` or `false` are in use
-    -   in raw C these does not exist and must be replaced with 0 (false), any other value, but often 1 (true)
+-   usually, a statement like `true` or `false` is in use
+    -   in **C** a boolean type does not exist and must be replaced with 0 (false), any other value, but often 1 (true)
     -   use `stdbool.h` to use `true` and `false` or define your own "true" and "false"
 -   the condition must be true to allow to run an instruction
     -   can be combined with sub conditions, which **must** be true (logic and) or at least one sub condition must be true (logic or)
     >   **NOTE**:   Don't mix logical comparisons with bit comparisons. These are quite different.
 -   can be extended with `else` block to run code, when the condition has not been satisfied
 
+##  Nice to know
+-   in (almost every) programming language: 0 means *false*, whereas a non-zero means *true*
+    -   not for languages, like: Java, C#, Rust, Swift, Kotlin
+    -   in languages, like Python, JavaScript, .lua, Ruby this has a different behavior
+
+### use conditions
+
 ```
-// single condition
-if (condition is true) {
+// single condition check
+if (condition == true || condition) {
     do something
 }
 
-//  logic and
+//  logic AND
 if (condition A is true as well as condition B is true (as well as condition n is true)) {
-    do something
+    //do something
 }
 
-//  logic or
+//  logic OR
 if (condition A is true or condition B is true (or condition n is true)) {
-    do something
+    //do something
+}
+
+// logic NOT
+if (!condition) {
+    //do something
 }
 
 //  -------------
