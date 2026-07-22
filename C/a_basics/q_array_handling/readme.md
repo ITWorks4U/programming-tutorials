@@ -39,3 +39,22 @@ void f(int *array, size_t nbr_elements) {
 ```
 
 >   **NOTE:**   *When an array shall be used for a function, then the amount of elements has to be determined before and must also be added to the function itself.*
+
+##  using multidimensional arrays
+-   create an array with a known size of rows and columns, like:
+
+```
+#define ROWS    2
+#define COLS    4
+
+int matrix[ROWS][COLS] = {
+    {1, 2, 3, 4},
+    {5, 6, 7, 8}
+};
+```
+-   this can also often used with a loop to go trough all elements
+
+>   **NOTE:**   *Don't use a two-dimensional pointer, unless you **REALLY** know, what you do. Because this often leads into an undefined behavipr and this crashes the application.*
+>>  *Also don't create a combination of a fixed array with a two-dimensional pointer. This also leads into an undefined behavior.*
+
+>>  *Same procedure for any n-dimensional array and n-dimensional pointer.*
