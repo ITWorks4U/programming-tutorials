@@ -4,52 +4,94 @@
 #include <locale.h>
 
 #ifdef _WIN32
-#include <fcntl.h>
-#include <io.h>
+#include <windows.h>
+
+HANDLE h;
+DWORD written;
 #endif
 
-#ifdef _WIN32
-void displays_emojis_windows(void) {
-    //  NOTE:   On a Windows system emojis can't be used with the unicode format,
-    //          because this is out of range for wchar_t [0..65,535], thus an
-    //          alternate way has to be used here, however, this may not be
-    //          able to display on your Windows machine.
+void display_emojis(void) {
+    /////
+    //  single emoji
+    /////
 
-    //  using surrogate pair instead (=> expected: 😀)
+    //  displays a grinning smiley
     wchar_t emoji[] = {
         0xD83D,
         0xDE00,
         0
     };
 
-    wprintf(L"%ls\n", emoji);
-
-    //  using an another alternate way, IF possible to display
-    const wchar_t *emojis[] = {
+    /////
+    //  array of emoji symbols
+    /////
+    const wchar_t *emojis_0[] = {
         L"😀",
         L"😂",
         L"🚀",
         L"🔥"
     };
-    size_t nbr_emojis = sizeof(emojis) / sizeof(emojis[0]);
 
-    for (size_t i = 0; i < nbr_emojis; i++)
-        wprintf(L"%ls\n", emojis[i]);
-    }
-#endif
+    size_t nbr_emojis_0 = sizeof(emojis_0) / sizeof(emojis_0[0]);
 
-#ifndef _WIN32
-void display_emojis_other_os(void) {
-    wchar_t emojis[] = {L'\U0001F600', L'\U0001F680', L'\U0001F525'};   // smile, rocket, heart
-    size_t nbr_emojis = sizeof(emojis) / sizeof(emojis[0]);
+    /////
+    //  array of emoji codes
+    /////
+    wchar_t emojis_1[] = {
+        L"\U0001F600"
+        L"\U0001F680"
+        L"\U0001F525"
+    };  // smile, rocket, fire
 
-    for(size_t i = 0; i < nbr_emojis; i++) {
-        wprintf(L"%u: %lc\n", i, emojis[i]);
-    }
+    #ifdef _WIN32
+        h = GetStdHandle(STD_OUTPUT_HANDLE);
+
+        WriteConsoleW(                                                      //  single grinning smiley
+            h,
+            emoji,
+            (DWORD)(sizeof(emoji) / sizeof(wchar_t) - 1),
+            &written,
+            NULL
+        );
+        printf("\n");
+
+        for (size_t i = 0; i < nbr_emojis_0; i++) {                         //  grinning, laughing, rocket, fire
+            WriteConsoleW(
+                h,
+                emojis_0[i],
+                (DWORD)wcslen(emojis_0[i]),
+                &written,
+                NULL
+            );
+        }
+        printf("\n");
+
+        WriteConsoleW(                                                      //  grinning, rocket, fire
+            h,
+            emojis_1,
+            (DWORD)wcslen(emojis_1),
+            &written,
+            NULL
+        );
+        printf("\n");
+    #else
+        wprintf(L"%ls\n", emoji);                                           //  single grinning smiley (may not be able to display on each system)
+
+        for (size_t i = 0; i < nbr_emojis_0; i++) {                         //  grinning, laughing, rocket, fire
+            wprintf(L"%ls", emojis_0[i]);
+        }
+        printf("\n");
+
+        size_t nbr_emojis_1 = sizeof(emojis_1) / sizeof(emojis_1[0]);       //  grinning, rocket, fire
+
+        for(size_t i = 0; i < nbr_emojis_1; i++) {
+            wprintf(L"%lc\n", emojis_1[i]);
+        }
+        printf("\n");
+    #endif
 }
-#endif
 
-void show_greek_alphabet(void) {
+void display_greek_alphabet(void) {
     wchar_t greek_alphabet[] = {
         L'\u03B1', // α Alpha
         L'\u03B2', // β Beta
@@ -101,36 +143,39 @@ void show_greek_alphabet(void) {
         L'\u03A9'  // Ω Omega
     };
 
-    size_t nbr_greek_chars = sizeof(greek_alphabet) / sizeof(greek_alphabet[0]);
+    #ifdef _WIN32
+        WriteConsoleW(
+            h,
+            greek_alphabet,
+            (DWORD)(sizeof(greek_alphabet) / sizeof(wchar_t) - 1),
+            &written,
+            NULL
+        );
+    #else
+        size_t nbr_greek_chars = sizeof(greek_alphabet) / sizeof(greek_alphabet[0]);
 
-    for(size_t i = 0; i < nbr_greek_chars; i++) {
-        wprintf(L"%2u: %lc\n", i+1, greek_alphabet[i]);
-    }
+        for(size_t i = 0; i < nbr_greek_chars; i++) {
+            wprintf(L"%lc", greek_alphabet[i]);
+        }
+    #endif
+
+    puts("");               //  just a mark for a new line
 }
 
 int main(void) {
+    //  NOTE:   On a Windows system emojis, special unicode character codes
+    //          won't work with wchar_t, as well as, wprintf.
+    //
+    //          Here, the Windows API is required to handle this issue,
+    //          because wchar_t has a range of 0..65535 (Windows), whereas
+    //          on an UNIX system wchar_t comes with a range of
+    //          0..2,147,483,647.
+
+    //  more required for UNIX systems (Windows doesn't need this)
     setlocale(/*category: */ LC_ALL, /*locale: */ "");
 
-    //  NOTE:   On a Windows system you might get a warning like:
-    //          "warning: character not encodable in a single code unit"
-    //
-    //          Because on Windows wchar_t usually comes with an upper
-    //          boundary of 65,535 whereas on an UNIX system this is often
-    //          limited to 2,147,483,647.
-
-    #ifdef _WIN32
-    puts("WARNING: These samples below may unable to display or shows any garbage, because wchar_t has a lower limitation than on an another OS.");
-
-    //  NOTE    If "_O_U16TEXT" may not be known, which should, then this expression must be
-    //          redefined again with: #define _O_U16TEXT     0x20000
-    _setmode(_fileno(stdout), _O_U16TEXT);
-
-    displays_emojis_windows();
-    #else
-    display_emojis_other_os();
-    #endif
-
-    show_greek_alphabet();      //  NOTE: On Windows not every greek character is able to display
+    display_emojis();
+    display_greek_alphabet();
 
     return EXIT_SUCCESS;
 }
