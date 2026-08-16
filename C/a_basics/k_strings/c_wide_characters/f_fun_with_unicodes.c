@@ -7,87 +7,101 @@
 #include <windows.h>
 
 HANDLE h;
-DWORD written;
+DWORD written;                                                      //  optional: contains the number of written characters / signs for the used emojis
 #endif
 
-void display_emojis(void) {
-    /////
-    //  single emoji
-    /////
-
-    //  displays a grinning smiley
+void display_single_emoji(void) {
+    //  single grinning smiley
     wchar_t emoji[] = {
         0xD83D,
         0xDE00,
         0
     };
 
+    #ifdef _WIN32
+        h = GetStdHandle(STD_OUTPUT_HANDLE);
+        printf("single smiley: ");
+
+        WriteConsoleW(                                              //  single grinning smiley
+            h,
+            emoji,
+            (DWORD)(sizeof(emoji) / sizeof(wchar_t) - 1),
+            &written,                                               //  may be NULL, if you don't care about the number of written charactes / signs for the used emoji(s)
+            NULL
+        );
+        printf(" => written characters: %lu\n", written);
+    #else
+        wprintf(L"single smiley: %ls\n", emoji);                    //  single grinning smiley (may not be able to display on each system)
+    #endif
+}
+
+void display_emojis(void) {
     /////
     //  array of emoji symbols
     /////
-    const wchar_t *emojis_0[] = {
+    const wchar_t *emojis[] = {
         L"😀",
         L"😂",
         L"🚀",
         L"🔥"
     };
 
-    size_t nbr_emojis_0 = sizeof(emojis_0) / sizeof(emojis_0[0]);
+    size_t nbr_emojis = sizeof(emojis) / sizeof(emojis[0]);
 
     /////
     //  array of emoji codes
     /////
-    wchar_t emojis_1[] = {
+    wchar_t emojis_unicode[] = {
         L"\U0001F600"
         L"\U0001F680"
         L"\U0001F525"
     };  // smile, rocket, fire
 
     #ifdef _WIN32
-        h = GetStdHandle(STD_OUTPUT_HANDLE);
+        printf("array of emojis: ");
+        DWORD total_written = 0;
 
-        WriteConsoleW(                                                      //  single grinning smiley
-            h,
-            emoji,
-            (DWORD)(sizeof(emoji) / sizeof(wchar_t) - 1),
-            &written,
-            NULL
-        );
-        printf("\n");
-
-        for (size_t i = 0; i < nbr_emojis_0; i++) {                         //  grinning, laughing, rocket, fire
+        for (size_t i = 0; i < nbr_emojis; i++) {                         //  grinning, laughing, rocket, fire
             WriteConsoleW(
                 h,
-                emojis_0[i],
-                (DWORD)wcslen(emojis_0[i]),
+                emojis[i],
+                (DWORD)wcslen(emojis[i]),
                 &written,
                 NULL
             );
-        }
-        printf("\n");
 
+            total_written += written;
+        }
+        printf(" => total written characters: %lu\n", total_written);
+
+        //  unlike to the example above the unicode emojis
+        //  comes with a single array and not with an array
+        //  of emoji unicode arrays, thus no loop and no
+        //  certain position is in use here
+        printf("array of emojis (unicode): ");
         WriteConsoleW(                                                      //  grinning, rocket, fire
             h,
-            emojis_1,
-            (DWORD)wcslen(emojis_1),
+            emojis_unicode,
+            (DWORD)wcslen(emojis_unicode),
             &written,
             NULL
         );
-        printf("\n");
+        printf(" => written characters: %lu\n", written);
     #else
-        wprintf(L"%ls\n", emoji);                                           //  single grinning smiley (may not be able to display on each system)
+        wprintf(L"array of emojis: ");
 
-        for (size_t i = 0; i < nbr_emojis_0; i++) {                         //  grinning, laughing, rocket, fire
-            wprintf(L"%ls", emojis_0[i]);
+        for (size_t i = 0; i < nbr_emojis; i++) {                                           //  grinning, laughing, rocket, fire
+            wprintf(L"%ls", emojis[i]);
         }
-        printf("\n");
+        wprintf(L"\n");
 
-        size_t nbr_emojis_1 = sizeof(emojis_1) / sizeof(emojis_1[0]);       //  grinning, rocket, fire
+        wprintf(L"array of emojis (unicode): ");
+        size_t nbr_of_emojis_unicode = sizeof(emojis_unicode) / sizeof(emojis_unicode[0]);  //  grinning, rocket, fire
 
-        for(size_t i = 0; i < nbr_emojis_1; i++) {
-            wprintf(L"%lc\n", emojis_1[i]);
+        for(size_t i = 0; i < nbr_of_emojis_unicode; i++) {
+            wprintf(L"%lc", emojis_unicode[i]);
         }
-        printf("\n");
+        wprintf(L"\n");
     #endif
 }
 
@@ -144,6 +158,8 @@ void display_greek_alphabet(void) {
     };
 
     #ifdef _WIN32
+        printf("greek alphabet: ");
+
         WriteConsoleW(
             h,
             greek_alphabet,
@@ -151,15 +167,17 @@ void display_greek_alphabet(void) {
             &written,
             NULL
         );
+
+        printf(" => written characters: %lu\n", written);
     #else
+        wprintf(L"greek alphabet: ");
         size_t nbr_greek_chars = sizeof(greek_alphabet) / sizeof(greek_alphabet[0]);
 
         for(size_t i = 0; i < nbr_greek_chars; i++) {
             wprintf(L"%lc", greek_alphabet[i]);
         }
+        wprintf(L"\n");
     #endif
-
-    puts("");               //  just a mark for a new line
 }
 
 int main(void) {
@@ -174,6 +192,7 @@ int main(void) {
     //  more required for UNIX systems (Windows doesn't need this)
     setlocale(/*category: */ LC_ALL, /*locale: */ "");
 
+    display_single_emoji();
     display_emojis();
     display_greek_alphabet();
 

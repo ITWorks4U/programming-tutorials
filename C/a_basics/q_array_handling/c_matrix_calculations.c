@@ -9,7 +9,7 @@
 #define ROWS 3
 #define COLS 3
 
-void add_matrices(int a[ROWS][COLS], int b[ROWS][COLS], int result[ROWS][COLS]) {
+void add_matrix(int a[ROWS][COLS], int b[ROWS][COLS], int result[ROWS][COLS]) {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             result[i][j] = a[i][j] + b[i][j];
@@ -17,7 +17,7 @@ void add_matrices(int a[ROWS][COLS], int b[ROWS][COLS], int result[ROWS][COLS]) 
     }
 }
 
-void subtract_matrices(int a[ROWS][COLS], int b[ROWS][COLS], int result[ROWS][COLS]) {
+void subtract_matrix(int a[ROWS][COLS], int b[ROWS][COLS], int result[ROWS][COLS]) {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             result[i][j] = a[i][j] - b[i][j];
@@ -51,12 +51,12 @@ int main(void) {
 
     int result[ROWS][COLS];
 
-    add_matrices(matrix_a, matrix_b, result);
+    add_matrix(matrix_a, matrix_b, result);
 
     printf("A + B:\n");
     print_matrix(result);
 
-    subtract_matrices(matrix_a, matrix_b, result);
+    subtract_matrix(matrix_a, matrix_b, result);
     printf("\nA - B:\n");
     print_matrix(result);
 

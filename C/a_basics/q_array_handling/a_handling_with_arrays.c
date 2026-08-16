@@ -11,7 +11,7 @@
 
 //       often used: int *array
 void use_array_wrong(int array[]) {
-    size_t number_of_elements = sizeof(array) / sizeof(array[0]);       //  How many elements can be determined? Only 1!
+    size_t number_of_elements = sizeof(array) / sizeof(array[0]);       //  How many elements can be determined? Maybe 1, 2, ...?
                                                                         //  By the way, this also produces a warning, that
                                                                         //  the division of sizeof(int *) / sizeof(int) does not
                                                                         //  compute the number of array elements.
