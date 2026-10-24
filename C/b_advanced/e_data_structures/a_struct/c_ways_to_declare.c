@@ -18,9 +18,11 @@ int main(void) {
     #endif
 
     #ifdef WAY_THREE
+    //  NOTE:   For a C++ compiler the members must be in the correct order to work with,
+    //          otherwise an error on compile time appears.
     Point p = {
-        .x = 1;
-        .y = 2;
+        .x = 1,
+        .y = 2
     };
     #endif
 
